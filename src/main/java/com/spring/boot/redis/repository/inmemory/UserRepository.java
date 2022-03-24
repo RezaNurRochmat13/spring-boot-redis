@@ -1,4 +1,4 @@
-package com.spring.boot.redis.repository;
+package com.spring.boot.redis.repository.inmemory;
 
 import com.spring.boot.redis.entity.User;
 import org.springframework.data.repository.CrudRepository;

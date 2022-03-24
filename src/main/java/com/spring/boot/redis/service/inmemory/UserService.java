@@ -1,4 +1,4 @@
-package com.spring.boot.redis.service;
+package com.spring.boot.redis.service.inmemory;
 
 import com.spring.boot.redis.entity.User;
 

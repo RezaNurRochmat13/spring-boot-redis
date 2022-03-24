@@ -1,7 +1,7 @@
 package com.spring.boot.redis.controller;
 
 import com.spring.boot.redis.entity.User;
-import com.spring.boot.redis.service.UserServiceImpl;
+import com.spring.boot.redis.service.inmemory.UserServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
