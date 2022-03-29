@@ -6,6 +6,7 @@ import com.spring.boot.redis.util.PasswordEncoderUtil;
 import com.spring.boot.redis.util.ResourceNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 public class UserServiceImpl implements UserService {
@@ -27,6 +28,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    @Transactional
     public User saveUserHash(User payload) {
         payload.setPassword(passwordEncoderUtil
                 .passwordEncoder()
@@ -36,6 +38,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    @Transactional
     public User updateUserHash(Long id, User payload) {
         User userById = userRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("Data not found in redis : " + id));
@@ -51,6 +54,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    @Transactional
     public void deleteUserHash(Long id) {
         User userById = userRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("Data not found in redis : " + id));
