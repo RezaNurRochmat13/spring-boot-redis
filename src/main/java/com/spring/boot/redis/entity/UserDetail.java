@@ -1,0 +1,20 @@
+package com.spring.boot.redis.entity;
+
+import com.fasterxml.jackson.annotation.JsonProperty;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import org.springframework.data.redis.core.RedisHash;
+
+import java.io.Serializable;
+
+@RedisHash(value = "UserDetail", timeToLive = 1500)
+@Getter
+@Setter
+@NoArgsConstructor
+public class UserDetail implements Serializable {
+    @JsonProperty("user_id")
+    private Integer userId;
+    private String address;
+    private String email;
+}
