@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.springframework.data.annotation.Id;
 import org.springframework.data.redis.core.RedisHash;
 
 import java.io.Serializable;
@@ -13,8 +14,10 @@ import java.io.Serializable;
 @Setter
 @NoArgsConstructor
 public class UserDetail implements Serializable {
+    @Id
+    private Long id;
     @JsonProperty("user_id")
-    private Integer userId;
+    private Long userId;
     private String address;
     private String email;
 }
