@@ -19,6 +19,8 @@ import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.test.web.servlet.RequestBuilder;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 
+import java.util.Random;
+
 import static org.junit.Assert.assertEquals;
 
 @RunWith(SpringRunner.class)
@@ -57,5 +59,35 @@ public class UserControllerTests extends RedisApplicationTests {
 
         // Assertion
         assertEquals(200, response.getResponse().getStatus());
+    }
+
+    @Test
+    public void testGetSingleUserWithValidParam() throws Exception {
+        User user = userRepository.save(new User("Mirzani", "mirzani0001872"));
+
+        RequestBuilder requestBuilder = MockMvcRequestBuilders
+                .get("/api/v1/users/" + user.getId())
+                .contentType(MediaType.APPLICATION_JSON);
+
+        MvcResult response = mockMvc
+                .perform(requestBuilder)
+                .andReturn();
+
+        // Assertion
+        assertEquals(200, response.getResponse().getStatus());
+    }
+
+    @Test
+    public void testGetSingleUserWithInvalidParam() throws Exception {
+        RequestBuilder requestBuilder = MockMvcRequestBuilders
+                .get("/api/v1/users/" + new Random().nextLong())
+                .contentType(MediaType.APPLICATION_JSON);
+
+        MvcResult response = mockMvc
+                .perform(requestBuilder)
+                .andReturn();
+
+        // Assertion
+        assertEquals(404, response.getResponse().getStatus());
     }
 }
