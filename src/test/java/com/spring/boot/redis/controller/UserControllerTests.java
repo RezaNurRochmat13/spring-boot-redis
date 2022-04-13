@@ -90,4 +90,37 @@ public class UserControllerTests extends RedisApplicationTests {
         // Assertion
         assertEquals(404, response.getResponse().getStatus());
     }
+
+    @Test
+    public void testCreateUserInMemoryWithPayload() throws Exception {
+        JSONObject payload = new JSONObject();
+        payload.put("username", "Wulan");
+        payload.put("password", "wulankusuma");
+
+        RequestBuilder requestBuilder = MockMvcRequestBuilders
+                .post("/api/v1/users")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(payload.toString());
+
+        MvcResult response = mockMvc
+                .perform(requestBuilder)
+                .andReturn();
+
+        // Assertion
+        assertEquals(200, response.getResponse().getStatus());
+    }
+
+    @Test
+    public void testCreateUserInMemoryWithoutPayload() throws Exception {
+        RequestBuilder requestBuilder = MockMvcRequestBuilders
+                .post("/api/v1/users")
+                .contentType(MediaType.APPLICATION_JSON);
+
+        MvcResult response = mockMvc
+                .perform(requestBuilder)
+                .andReturn();
+
+        // Assertion
+        assertEquals(400, response.getResponse().getStatus());
+    }
 }
