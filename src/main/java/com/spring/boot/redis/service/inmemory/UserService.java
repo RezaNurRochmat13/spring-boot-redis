@@ -2,6 +2,8 @@ package com.spring.boot.redis.service.inmemory;
 
 import com.spring.boot.redis.entity.User;
 
+import java.util.List;
+
 public interface UserService {
     Iterable<User> listUserHash();
     User detailUserHash(Long id);
