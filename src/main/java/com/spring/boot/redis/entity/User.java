@@ -3,6 +3,7 @@ package com.spring.boot.redis.entity;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.ToString;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.redis.core.RedisHash;
 
@@ -11,6 +12,7 @@ import java.io.Serializable;
 @RedisHash(value = "User", timeToLive = 1500)
 @Getter
 @Setter
+@ToString
 @NoArgsConstructor
 public class User implements Serializable {
     @Id
